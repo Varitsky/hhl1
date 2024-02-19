@@ -13,10 +13,10 @@ public class Main {
      в остальных числах переставляются местами числа десятков и единиц (вместо 363 - 336).
      Программа должна вывести на экран новое значение переменной.
      **/
-//    System.out.println(autoTask1("672"));
-//    System.out.println(autoTask1("363"));
-//    System.out.println(autoTask1("500"));
-//    task1();
+    System.out.println(autoTask1("672"));
+    System.out.println(autoTask1("363"));
+    System.out.println(autoTask1("500"));
+    task1();
 
     /**
      * Напишите программу, которая выводит на экран все трехзначные числа, для которых соблюдаются два условия:
