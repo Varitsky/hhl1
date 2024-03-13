@@ -7,6 +7,7 @@ public class DirectionCaptcha extends Captcha implements Checkable{
   private static final Scanner SCANNER = new Scanner(System.in);
   private String correctButtonOfDirection;
   public String actualAnswerClientChooseOneOfThreeButtons;
+  public String pictureWithDirection;
 
 
   DirectionCaptcha() {
@@ -22,6 +23,10 @@ public class DirectionCaptcha extends Captcha implements Checkable{
       this.isFraud = true;
       System.out.println("это мошенник/бот, гонять его по кругу бесконечно даже если капча верная");
     } else new DirectionCaptcha();
+  }
+
+  public String getPicture() {
+    return pictureWithDirection;
   }
 
   @Override
@@ -49,7 +54,7 @@ public class DirectionCaptcha extends Captcha implements Checkable{
   @Override
   protected void generateCaptcha() {
 
-    String pictureWithDirection = "generateNewPictureWithDirection";
+    pictureWithDirection = "generateNewPictureWithDirection";
     this.correctButtonOfDirection = String.valueOf(Direction.randomDirection());
     System.out.println("На экране картинка \""+ pictureWithDirection + "\", где стрелочка указывает на - \"" + this.correctButtonOfDirection + "\"");
   }
@@ -65,18 +70,18 @@ public class DirectionCaptcha extends Captcha implements Checkable{
     return "Неверное направление";
   }
 
-  private enum Direction {
+  enum Direction {
     // "LEFT" "RIGHT" "CENTER"
     L,
     C,
     R;
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     private static Direction randomDirection() {
 
       Direction[] directions = values();
-      return directions[random.nextInt(directions.length)];
+      return directions[RANDOM.nextInt(directions.length)];
     }
   }
 }

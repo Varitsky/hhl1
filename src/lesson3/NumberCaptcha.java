@@ -10,6 +10,7 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
   private static final Scanner SCANNER = new Scanner(System.in);
   private int correctZeroToTwoNumberAnswer;
   public int actualAnswerClientInputIntoFieldCaptcha;
+  public String pictureOfNumber;
 
 
   NumberCaptcha() {
@@ -25,6 +26,10 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
       this.count = limit;
       System.out.println("это мошенник/бот, сразу лимит исчерпан");
     } else new NumberCaptcha();
+  }
+
+  public String getPicture() {
+    return pictureOfNumber;
   }
 
   @Override
@@ -52,9 +57,9 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
   @Override
   protected void generateCaptcha() {
 
-    String pictureOfWNumber = "newPictureOfNumberForCaptcha";
+    pictureOfNumber = "newPictureOfNumberForCaptcha";
     this.correctZeroToTwoNumberAnswer = new Random().nextInt(0,3);
-    System.out.println("На экране картинка  \""+ pictureOfWNumber + "\"с цифрой \"" + this.correctZeroToTwoNumberAnswer + "\"");
+    System.out.println("На экране картинка  \"" + pictureOfNumber + "\"с цифрой \"" + this.correctZeroToTwoNumberAnswer + "\"");
   }
 
   private void captchaAnswerFromClient() {

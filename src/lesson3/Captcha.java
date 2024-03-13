@@ -24,4 +24,8 @@ abstract class Captcha {
   protected static void limitExceeded() {
     System.out.println("Limit " + limit + " Exceeded");
   }
+
+  protected String getPicture() {
+    return null;
+  }
 }
