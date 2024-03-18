@@ -45,8 +45,6 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
     resetCount();
     while (isLimit(count, limit) && !isFraud) {
 
-      generateCaptcha();
-//      readAloud();  //оно работает просто отвлекает, для реализации интерфейса.
       captchaAnswerFromClient();
 
       if (this.actualAnswerClientInputIntoFieldCaptcha == this.correctZeroToTwoNumberAnswer) {
@@ -56,17 +54,26 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
         System.out.println(wrongAnswer());
         super.increaseCount();
         System.out.println("попытка/лимит - " + count + "/" + limit);
+        regenerateCaptcha();
       }
     }
     limitExceeded();
   }
 
   @Override
-  protected void generateCaptcha() {
+  protected NumberCaptcha generateCaptcha() {
 
     pictureOfNumber = "newPictureOfNumberForCaptcha";
     this.correctZeroToTwoNumberAnswer = new Random().nextInt(0,3);
     System.out.println("На экране картинка  \"" + pictureOfNumber + "\"с цифрой \"" + this.correctZeroToTwoNumberAnswer + "\"");
+    return this;
+  }
+
+  protected NumberCaptcha regenerateCaptcha() {
+    pictureOfNumber = "newPictureOfNumberForCaptcha";
+    this.correctZeroToTwoNumberAnswer = new Random().nextInt(0,3);
+    System.out.println("Новая капча: На экране картинка  \"" + pictureOfNumber + "\"с цифрой \"" + this.correctZeroToTwoNumberAnswer + "\"");
+    return this;
   }
 
   private void captchaAnswerFromClient() {
@@ -81,12 +88,8 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
   }
 
   @Override
-  public void readAloud() {
-
-    System.out.println("Кнопочка чтобы воспроизвести вслух текст с картинки, чтобы прослушать нажмите Y");
-    String read = SCANNER.nextLine();
-    if (read.equals("Y")) {
-      System.out.println("Сгенерирован и воспроизведен аудиофайл, слышно как произносят " + this.correctZeroToTwoNumberAnswer + "\n");
-    } else System.out.println("ничего не произошло, кнопку прочитать вслух не нажали");
+  public NumberCaptcha readAloud() {
+    System.out.println("Сгенерирован и воспроизведен аудиофайл, слышно как произносят " + this.correctZeroToTwoNumberAnswer + "\n");
+    return this;
   }
 }

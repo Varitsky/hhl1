@@ -1,6 +1,6 @@
 package lesson3;
 
-public interface Vocable {
+public interface Vocable<T extends Captcha> {
 
-   void readAloud();
+   Captcha readAloud();
 }

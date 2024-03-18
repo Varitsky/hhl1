@@ -36,7 +36,6 @@ public class DirectionCaptcha extends Captcha implements Checkable{
     resetCount();
     while (isLimit(count, limit)) {
 
-      generateCaptcha();
       captchaAnswerFromClient();
 
       if (this.actualAnswerClientChooseOneOfThreeButtons.equals(this.correctButtonOfDirection) && !isFraud) {
@@ -46,17 +45,27 @@ public class DirectionCaptcha extends Captcha implements Checkable{
         System.out.println(wrongAnswer());
         if(!isFraud)super.increaseCount();
         System.out.println("попытка/лимит - " + count + "/" + limit);
+        regenerateCaptcha();
       }
     }
     limitExceeded();
   }
 
   @Override
-  protected void generateCaptcha() {
+  protected DirectionCaptcha generateCaptcha() {
 
     pictureWithDirection = "generateNewPictureWithDirection";
     this.correctButtonOfDirection = String.valueOf(Direction.randomDirection());
     System.out.println("На экране картинка \""+ pictureWithDirection + "\", где стрелочка указывает на - \"" + this.correctButtonOfDirection + "\"");
+    return this;
+  }
+
+  @Override
+  protected DirectionCaptcha regenerateCaptcha() {
+    pictureWithDirection = "generateNewPictureWithDirection";
+    this.correctButtonOfDirection = String.valueOf(Direction.randomDirection());
+    System.out.println("Новая капча: На экране картинка \""+ pictureWithDirection + "\", где стрелочка указывает на - \"" + this.correctButtonOfDirection + "\"");
+    return this;
   }
 
   private void captchaAnswerFromClient() {
