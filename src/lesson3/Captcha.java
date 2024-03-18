@@ -15,7 +15,8 @@ abstract class Captcha {
     this.count = 0;
   }
 
-  protected abstract void generateCaptcha();
+  protected abstract Captcha generateCaptcha();
+  protected abstract Captcha regenerateCaptcha();
 
   protected boolean isLimit(int count, int limit) {
     return (count < limit);
