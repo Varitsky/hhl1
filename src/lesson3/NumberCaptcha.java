@@ -14,8 +14,7 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
 
 
   NumberCaptcha() {
-
-    limit = 3;
+    limit = 5;
     this.isFraud = false;
   }
 
@@ -29,7 +28,15 @@ public class NumberCaptcha extends Captcha implements Checkable, Vocable {
   }
 
   public String getPicture() {
-    return pictureOfNumber;
+    return this.pictureOfNumber;
+  }
+
+  public int getCorrectZeroToTwoNumberAnswer() {
+    return this.correctZeroToTwoNumberAnswer;
+  }
+
+  public int getLimit() {
+    return limit;
   }
 
   @Override

@@ -20,7 +20,6 @@ public class lesson3 {
     System.out.println("[Новенькое с задания 5] Предлагаю выбрать: \"" + randomString.generate() + "\", вдруг повезёт.[Новенькое с задания 5] ");
     numberCaptcha.check2FA();
 
-//    System.out.println("\nКапча для мошенника с параметризированным конструктором");
 //    NumberCaptcha noNumberCaptcha = new NumberCaptcha(true);
 //    noNumberCaptcha.check2FA();
 
@@ -30,7 +29,6 @@ public class lesson3 {
     System.out.println("[Новенькое с задания 5] Предлагаю выбрать: \"" + randomEnum + "\", вдруг повезёт.[Новенькое с задания 5] ");
     directionCaptcha.check2FA();
 
-//    System.out.println("\nКапча для мошенника с параметризированным конструктором (бесконечная)");
 //    DirectionCaptcha infinityDirectionCaptcha = new DirectionCaptcha(true);
 //    infinityDirectionCaptcha.check2FA();
 
